@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
     res.write('<title>TESTE</title>');
     res.write('</head>');
     res.write('<body>');
-    res.write('<form action="/message" method="POST"><input type="text"><button type="submit">Send</button></form>');
+    res.write('<form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form>');
     res.write('</body>');
     res.write('</hmtl>');
     return res.end();
@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
 
   if(req.url === '/message' && req.method === 'POST') {
     const body = [];
-    
+
     req.on('data', (chunk) => {
       console.log(chunk);
       body.push(chunk);
@@ -28,10 +28,10 @@ const server = http.createServer((req, res) => {
 
     req.on('end', () => {
       const parsedBody = Buffer.concat(body).toString();
-      console.log(parsedBody);
+      const message = parsedBody.split('=')[1];
+      fs.writeFileSync('message.txt', message);
     });
 
-    fs.writeFileSync('message.txt', 'DUMMY');
     res.statusCode = 302;
     res.setHeader('Location', '/');
     return res.end();

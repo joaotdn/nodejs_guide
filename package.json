@@ -1,0 +1,20 @@
+{
+  "name": "node_guide",
+  "version": "1.0.0",
+  "description": "NodeJS advanced course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaotdn/nodejs_guide.git"
+  },
+  "author": "João Teodoro <joaotdn@gmail.com> (https://github.com/joaotdn/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joaotdn/nodejs_guide/issues"
+  },
+  "homepage": "https://github.com/joaotdn/nodejs_guide#readme"
+}

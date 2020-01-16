@@ -1,9 +1,21 @@
-const http = require('http');
-const routes = require('./routes');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
-console.log(routes.someText);
+app.use(bodyParser.urlencoded({extended: false}));
 
-const server = http.createServer(routes.handler);
+app.use('/add', (req, res, next) => {
+  res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">ADD</button></form>');
+});
 
-server.listen(3000);
+app.post('/product', (req, res, next) => {
+  console.log(req.body);
+  res.statusCode = 302;
+  res.redirect('/');
+});
 
+app.use('/', (req, res, next) => {
+  res.send('<h1>Express.js</h1>');
+});
+
+app.listen(3000);

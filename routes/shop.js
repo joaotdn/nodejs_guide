@@ -5,7 +5,7 @@ const adminData = require("./admin");
 router.get("/", (req, res, next) => {
   res.render("shop", {
     products: adminData.products,
-    docTitle: "Shop",
+    docTitle: "Shopp",
     pageTitle: "List products",
     path: "/"
   });

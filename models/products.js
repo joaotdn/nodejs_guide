@@ -1,5 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const p = path.join(
+  path.dirname(process.mainModule.filename),
+  "data",
+  "products.json"
+);
 
 module.exports = class Product {
   constructor(t) {
@@ -7,12 +12,6 @@ module.exports = class Product {
   }
 
   save() {
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      "data",
-      "products.json"
-    );
-
     fs.readFile(p, (err, fileContent) => {
       let products = [];
       if (!err) {
@@ -24,12 +23,6 @@ module.exports = class Product {
   }
 
   static fetchAll(cb) {
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      "data",
-      "products.json"
-    );
-
     fs.readFile(p, (err, fileContent) => {
       if (err) {
         cb([]);

@@ -1,0 +1,11 @@
+extends layouts/default.pug
+
+block content 
+  .cell.small-12
+    h2.margin-bottom-2 #{pageTitle}
+  .cell.small-12
+    form(action="/admin/add-product" method="POST")
+      p
+        input(type="text" name="title" placeholder="Product name", required)
+      p
+        button.button(type="submit") ADD

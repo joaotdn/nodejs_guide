@@ -1,0 +1,24 @@
+extends layouts/default.pug
+
+block content
+  .cell.small-12
+    h2.margin-bottom-2 #{pageTitle}
+
+    if products.length > 0
+      .grid-x.grid-padding-x.small-up-2.medium-up-4
+        each product in products
+          .cell
+            .card.shadow
+              .card-divider
+                h4 #{product.title}
+              img(src="https://get.foundation/sites/docs/assets/img/generic/rectangle-1.jpg" alt="product")
+              .card-section.text-center
+                p
+                  strong $ 300,00
+                p
+                  small Product description
+                p
+                  a.button.expanded(href="#") Buy
+    else
+      h5
+        i No products...

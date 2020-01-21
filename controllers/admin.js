@@ -16,11 +16,11 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {
-    res.render("shop/list-products", {
+    res.render("admin/product-list", {
       products,
-      docTitle: "Shopp",
-      pageTitle: "List products",
-      path: "/"
+      docTitle: "Products",
+      pageTitle: "Products",
+      path: "/admin/products"
     });
   });
 };

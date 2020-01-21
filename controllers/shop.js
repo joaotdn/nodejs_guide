@@ -1,16 +1,5 @@
 const Product = require("../models/products");
 
-exports.getProducts = (req, res, next) => {
-  Product.fetchAll(products => {
-    res.render("shop/products-list", {
-      products,
-      docTitle: "Shopp",
-      pageTitle: "List products",
-      path: "/"
-    });
-  });
-};
-
 exports.getIndex = (req, res, next) => {
   Product.fetchAll(products => {
     res.render("shop/index", {
@@ -36,4 +25,15 @@ exports.getCheckout = (req, res, next) => {
     docTitle: "Checkout",
     pageTitle: "Checkout"
   });
-}
+};
+
+exports.getProducts = (req, res, next) => {
+  Product.fetchAll(products => {
+    res.render("shop/products-list", {
+      products,
+      docTitle: "Shopp",
+      pageTitle: "List products",
+      path: "/shop/products"
+    });
+  });
+};

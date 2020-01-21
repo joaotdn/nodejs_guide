@@ -1,1 +1,27 @@
 extends ../layouts/default.pug
+
+block content
+  .cell.small-12
+    h2.margin-bottom-2 #{pageTitle}
+
+    if products.length > 0
+      .grid-x.grid-padding-x.small-up-2.medium-up-4
+        each product in products
+          .cell
+            .card.shadow
+              .card-divider
+                h4 #{product.title}
+              img(src=product.imageUrl alt="product")
+              .card-section.text-center
+                p
+                  strong $#{product.price}
+                p
+                  small #{product.description}
+                p
+                  a.button.float-left(href="/admin/edit-product") Edit
+                p
+                  form.float-right(action="/admin/delete-product" method="DELETE")
+                    button.button.alert(type="submit") Delete
+    else
+      h5
+        i No products...

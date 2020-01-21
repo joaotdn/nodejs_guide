@@ -10,13 +10,15 @@ block content
           .cell
             .card.shadow
               .card-divider
-                h4 #{product.title}
-              img(src="https://get.foundation/sites/docs/assets/img/generic/rectangle-1.jpg" alt="product")
+                h4
+                  a(href=`/products/${product.id}`) #{product.title}
+              a(href=`/products/${product.id}`) 
+                img(src=product.imageUrl alt="product")
               .card-section.text-center
                 p
-                  strong $ 300,00
+                  strong $ #{product.price}
                 p
-                  small Product description
+                  small #{product.description}
                 p
                   a.button.expanded(href="#") Buy
     else

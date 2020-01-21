@@ -13,7 +13,7 @@ exports.getIndex = (req, res, next) => {
 
 exports.getCart = (req, res, next) => {
   res.render("shop/cart", {
-    path: "/cart",
+    path: "/shop/cart",
     docTitle: "Cart",
     pageTitle: "Cart"
   });
@@ -36,4 +36,16 @@ exports.getProducts = (req, res, next) => {
       path: "/shop/products"
     });
   });
+};
+
+exports.getOrders = (req, res, next) => {
+  res.render("shop/orders", {
+    docTitle: "Your orders",
+    pageTitle: "Your orders",
+    path: "/shop/orders"
+  });
+};
+
+exports.getProductId = (req, res, next) => {
+  consolee.log(req.params);
 };

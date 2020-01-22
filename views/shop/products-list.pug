@@ -12,15 +12,14 @@ block content
               .card-divider
                 h4
                   a(href=`/products/${product.id}`) #{product.title}
-              a(href=`/products/${product.id}`) 
-                img(src=product.imageUrl alt="product")
+              img(src=product.imageUrl alt="product")
               .card-section.text-center
                 p
                   strong $ #{product.price}
                 p
                   small #{product.description}
                 p
-                  a.button.expanded(href="#") Buy
+                  include ../partials/add-to-cart.pug
     else
       h5
         i No products...

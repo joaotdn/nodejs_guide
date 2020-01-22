@@ -1,0 +1,15 @@
+extends ../layouts/default.pug
+
+block content
+  .cell.small-12
+    h2.margin-bottom-2 #{pageTitle}
+    .grid-x.grid-padding-x.align-middle
+      .cell.small-12.medium-4
+        img.thumbnail(src=product.imageUrl)
+      .cell.small-12.medium-8
+        .cell.small-12
+          p
+            strong #{product.price}
+          p #{product.description}
+          p
+            include ../partials/add-to-cart.pug

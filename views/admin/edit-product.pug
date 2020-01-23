@@ -4,7 +4,7 @@ block content
   .cell.small-12
     h2.margin-bottom-2 #{pageTitle}
   .cell.small-12
-    form(action="/admin/add-product" method="POST")
+    form(action=`/admin/edit-product/${product.id}` method="POST")
       p
         input(type="text" name="title" placeholder="Product name", value=product.title required)
       p
@@ -14,5 +14,6 @@ block content
       p
         textarea(name="description", rows="10", placeholder="Description" required)
           | #{product.description}
+      input(type="hidden" value=product.id name="productID")
       p
         button.button(type="submit") SAVE

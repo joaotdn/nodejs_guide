@@ -10,26 +10,21 @@ module.exports = class Cart {
   static addProduct(id, productPrice) {
     // Fetch the prevous cart
     fs.readFile(p, (err, fileContent) => {
-      let cart = { products: [], totalPrice: 0 };
-
-      if (!err) {
-        cart = JSON.parse(fileContent);
-      }
-
-      const productExistsIndex =
-        cart.products && cart.products.findIndex(p => p.id === id);
-      const productExists =
-        productExistsIndex && cart.products[productExistsIndex];
+      let cart = !err
+        ? JSON.parse(fileContent.toString())
+        : { products: [], totalPrice: 0 };
+      const { products } = cart;
+      const productExistingIndex = products.findIndex(p => p.id === id);
+      const productExists = products[productExistingIndex];
       let updatedProduct;
 
       if (productExists) {
         updatedProduct = { ...productExists };
         updatedProduct.qty += 1;
-        cart.products = [...cart.products];
-        cart.products[productExistsIndex] = updatedProduct;
+        products[productExistingIndex] = updatedProduct;
       } else {
         updatedProduct = { id, qty: 1 };
-        cart.products = cart.products ? [...cart.products, updatedProduct] : [updatedProduct];
+        products = [...products, updatedProduct];
       }
 
       cart.totalPrice = cart.totalPrice + +productPrice;

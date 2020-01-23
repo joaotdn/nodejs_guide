@@ -18,7 +18,7 @@ block content
                 p
                   small #{product.description}
                 p
-                  a.button.float-left(href="/admin/edit-product") Edit
+                  a.button.float-left(href=`/admin/edit-product/${product.id}?edit=true`) Edit
                 p
                   form.float-right(action="/admin/delete-product" method="DELETE")
                     button.button.alert(type="submit") Delete

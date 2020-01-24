@@ -24,7 +24,7 @@ module.exports = class Cart {
         products[productExistingIndex] = updatedProduct;
       } else {
         updatedProduct = { id, qty: 1 };
-        products = [...products, updatedProduct];
+        products.push(updatedProduct);
       }
 
       cart.totalPrice = cart.totalPrice + +productPrice;

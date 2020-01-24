@@ -3,3 +3,27 @@ extends ../layouts/default.pug
 block content
   .cell.small-12
     h2.margin-bottom-2 #{pageTitle}
+
+    if cartProducts
+      .grid-x.grid-padding-x.small-up-2.medium-up-4
+        each product in cartProducts
+          .cell
+            .card.shadow
+              .card-divider
+                h4 #{product.productData.title}
+              img(src=product.productData.imageUrl alt="product")
+              .card-section.text-center
+                p
+                  strong $#{product.productData.price}
+                p
+                  small #{product.productData.description}
+                p
+                  a.button.float-left(href=`/admin/edit-product/${product.productData.id}?edit=true`) Edit
+                p
+                  form.float-right(action="/admin/delete-product" method="POST")
+                    input(type="hidden" name="productId" value=product.productData.id)
+                    button.button.alert(type="submit") Delete
+                    
+    else
+      h5
+        i Cart empty...

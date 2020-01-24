@@ -31,6 +31,13 @@ module.exports = class Cart {
     });
   }
 
+  static getCart(cb) {
+    fs.readFile(p, (err, fileContent) => {
+      const cart = JSON.parse(fileContent.toString());
+      !err ? cb(cart) : cb([]);
+    });
+  }
+
   static deleteProduct(id, price) {
     fs.readFile(p, (err, fileContent) => {
       if (err) {

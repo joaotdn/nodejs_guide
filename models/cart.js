@@ -8,7 +8,6 @@ const p = path.join(
 
 module.exports = class Cart {
   static addProduct(id, productPrice) {
-    // Fetch the prevous cart
     fs.readFile(p, (err, fileContent) => {
       let cart = !err
         ? JSON.parse(fileContent.toString())
@@ -29,6 +28,20 @@ module.exports = class Cart {
 
       cart.totalPrice = cart.totalPrice + +productPrice;
       fs.writeFile(p, JSON.stringify(cart), err => console.log(err));
+    });
+  }
+
+  static deleteProduct(id, price) {
+    fs.readFile(p, (err, fileContent) => {
+      if (err) {
+        return;
+      }
+      const updatedCart = { ...fileContent };
+      const product = updatedCart.find(p => p.id === id);
+      const productQty = product.qty;
+      updatedCart.products = updatedCart.products.filter(p => p.id !== id);
+      updatedCart.totalPrice = updatedCart.totalPrice - price * productQty;
+      fs.writeFile(p, JSON.stringify(updatedCart), err => console.log(err));
     });
   }
 };

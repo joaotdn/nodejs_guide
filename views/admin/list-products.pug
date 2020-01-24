@@ -20,8 +20,10 @@ block content
                 p
                   a.button.float-left(href=`/admin/edit-product/${product.id}?edit=true`) Edit
                 p
-                  form.float-right(action="/admin/delete-product" method="DELETE")
+                  form.float-right(action="/admin/delete-product" method="POST")
+                    input(type="hidden" name="productId" value=product.id)
                     button.button.alert(type="submit") Delete
+                    
     else
       h5
         i No products...

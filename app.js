@@ -6,6 +6,7 @@ const app = express();
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const sequelize = require("./util/database");
 
 app.set("view engine", "pug");
 app.set("views", "views");
@@ -17,4 +18,9 @@ app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(get404);
 
-app.listen(3000);
+sequelize
+  .sync()
+  .then(res => {
+    app.listen(3000);
+  })
+  .catch(e => console.log(e));
